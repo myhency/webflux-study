@@ -17,4 +17,10 @@ public class RoutesConfig {
                 .GET("/products/all", productHandler::getAll)
                 .build();
     }
+
+    @Bean
+    public RouterFunction<ServerResponse> router2(ProductHandler productHandler) {
+        return route()
+                .GET("/all", productHandler::getAllWithProxy).build();
+    }
 }

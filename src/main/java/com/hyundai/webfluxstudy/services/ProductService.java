@@ -1,6 +1,7 @@
 package com.hyundai.webfluxstudy.services;
 
 import com.hyundai.webfluxstudy.model.Product;
+import com.hyundai.webfluxstudy.proxy.ProductProxy;
 import com.hyundai.webfluxstudy.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -12,9 +13,11 @@ import java.util.stream.Stream;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductProxy proxy;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductProxy proxy) {
         this.productRepository = productRepository;
+        this.proxy = proxy;
     }
 
     public Flux<Product> getProducts() { // whole method takes 10 seconds to execute
@@ -30,5 +33,9 @@ public class ProductService {
 
         return Flux.fromStream(Stream.of(p1, p2))
                 .delayElements(Duration.ofSeconds(3)); // simulate something happens with each product
+    }
+
+    public Flux<Product> getAllWithProxy() {
+        return proxy.getAll();
     }
 }

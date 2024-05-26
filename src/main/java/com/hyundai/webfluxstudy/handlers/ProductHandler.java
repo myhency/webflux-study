@@ -24,4 +24,9 @@ public class ProductHandler {
         return ok().contentType(MediaType.TEXT_EVENT_STREAM)
                 .body(productService.getAll(), Product.class);
     }
+
+    public Mono<ServerResponse> getAllWithProxy(ServerRequest request) {
+        return ok().contentType(MediaType.TEXT_EVENT_STREAM)
+                .body(productService.getAllWithProxy(), Product.class);
+    }
 }
