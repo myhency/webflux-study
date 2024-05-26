@@ -1,8 +1,6 @@
 package com.hyundai.webfluxstudy.config;
 
 import com.hyundai.webfluxstudy.handlers.ProductHandler;
-import com.hyundai.webfluxstudy.model.Product;
-import com.hyundai.webfluxstudy.services.ProductService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
